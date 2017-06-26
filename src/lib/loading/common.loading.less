@@ -1,0 +1,123 @@
+.m-load-mask {
+    display: none;
+    position: fixed;
+    z-index: 10000;
+    left: 50%;
+    top: 40%;
+    margin-top: -1.2rem;
+    margin-left: -1.2rem;
+    width: 2.4rem;
+    height: 2.4rem;
+    border-radius: 12px;
+    background: rgba(0, 0, 0, 0.8);
+    padding: .50rem 0;
+    
+    .m-load {
+        position: relative;
+        width: .72rem;
+        height: .72rem;
+        margin: 0px auto .24rem;
+
+        .m-load-line div {
+            position: absolute;
+            left: 0.32rem;
+            top: 0;
+            width: 0.05rem;
+            height: 0.6rem;
+        }
+
+    }
+
+    .m-load-txt {
+        text-align: center;
+        color: #fff;
+        font-size: 0.28rem;
+        width: 100%;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+    }
+    .m-load-line div .m-load-before, .m-load-line div .m-load-after {
+        position: absolute;
+        display: block;
+        height: 25%;
+        width: 100%;
+        background: #fcfcfc;
+        border-radius: 5px;
+    }
+    .m-load-line div .m-load-before{
+        top: 0;
+    }
+    .m-load-line div .m-load-after{
+        bottom: 0;
+    }
+
+    .m-load-line div:nth-child(2) {
+        transform: rotate(30deg);
+    }
+    .m-load-line div:nth-child(3) {
+        transform: rotate(60deg);
+    }
+    .m-load-line div:nth-child(4) {
+        transform: rotate(90deg);
+    }
+    .m-load-line div:nth-child(5) {
+        transform: rotate(120deg);
+    }
+    .m-load-line div:nth-child(6) {
+        transform: rotate(150deg);
+    }
+
+    .m-load-line div:nth-child(1) .m-load-before {
+        animation: m-load-load 1.2s linear 0s infinite;
+    }
+    .m-load-line div:nth-child(2) .m-load-before {
+        animation: m-load-load 1.2s linear 0.1s infinite;
+    }
+    .m-load-line div:nth-child(3) .m-load-before {
+        animation: m-load-load 1.2s linear 0.2s infinite;
+    }
+    .m-load-line div:nth-child(4) .m-load-before {
+        animation: m-load-load 1.2s linear 0.3s infinite;
+    }
+    .m-load-line div:nth-child(5) .m-load-before {
+        animation: m-load-load 1.2s linear 0.4s infinite;
+    }
+    .m-load-line div:nth-child(6) .m-load-before {
+        animation: m-load-load 1.2s linear 0.5s infinite;
+    }
+    .m-load-line div:nth-child(1) .m-load-after {
+        animation: m-load-load 1.2s linear 0.6s infinite;
+    }
+    .m-load-line div:nth-child(2) .m-load-after {
+        animation: m-load-load 1.2s linear 0.7s infinite;
+    }
+    .m-load-line div:nth-child(3) .m-load-after {
+        animation: m-load-load 1.2s linear 0.8s infinite;
+    }
+    .m-load-line div:nth-child(4) .m-load-after {
+        animation: m-load-load 1.2s linear 0.9s infinite;
+    }
+    .m-load-line div:nth-child(5) .m-load-after {
+        animation: m-load-load 1.2s linear 1s infinite;
+    }
+    .m-load-line div:nth-child(6) .m-load-after {
+        animation: m-load-load 1.2s linear 1.1s infinite;
+    }
+}
+/** 加载动画 **/
+@keyframes m-load-load {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+
+
+
+
+
+

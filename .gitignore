@@ -1,0 +1,7 @@
+/node_modules
+/assets
+/dist
+/.sass-cache
+./npm-debug.log
+.DS_Store
+.history

@@ -1,0 +1,9 @@
+body{
+    font-size: 50px;
+    color: #f00;
+}
+#div1{
+    width: 500px;
+    height: 500px;
+    background: url(../images/AAEAAQAAAAAAAAaxAAAAJGI0MjU0ZjY0LWQ4OTYtNGIzMi05MTUzLWVjOGU1YjU1MzBkOA.jpg);
+}
