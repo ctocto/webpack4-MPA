@@ -1,4 +1,4 @@
-# webpack4-demo
+# webpack4-MPA
 
 基于 webpack4 实现的多入口项目脚手架。
 
