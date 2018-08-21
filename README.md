@@ -7,7 +7,7 @@ html-webpack-plugin 实现 html 多入口，
 less-loader 实现 less 编译，
 postcss-loader 配置 autoprefixer 实现自动添加浏览器兼容前缀，
 html-withimg-loader 实现 html 内引入图片版本号添加和模板功能，
-babel-loader 实现 ES6 转码功能。
+babel-loader 实现 ES6+ 转码功能。
 
 ## 使用
 
@@ -32,7 +32,7 @@ npm run build
 ### 目录
 
 ```
-├── build                        # 构建后的目录
+├── dist                         # 构建后的目录
 ├── config                       # 项目配置文件
 │   ├── webpack.common.js        # webpack 公共配置
 |   ├── webpack.dev.js           # webpack 开发配置
