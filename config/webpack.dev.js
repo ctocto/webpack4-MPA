@@ -30,12 +30,11 @@ module.exports = merge(common, {
         port: 8088,
         historyApiFallback: true,
         host: ip.address(),
-        watchOptions: {
-            aggregateTimeout: 300,
-            poll: 1000
-        },
-    }
-
+    },
+    watchOptions: {
+        aggregateTimeout: 300,
+        poll: 1000
+    },
 });
 
 if (proxy && JSON.stringify(proxy) !== '{}') {

@@ -41,33 +41,33 @@ npm run build
 │   └── postcss.config.js        # postcss 配置文件
 ├── src                          # 程序源文件
 │   └── lib                      # JS 库等，不参与路由匹配      
-│   ├    └── jquery.js 
+│   │    └── jquery.js 
 │   │
 │   ├── dll
-│   ├    └── dll.*.*.js          # dll 文件（第三方库）
+│   │    └── dll.*.*.js          # dll 文件（第三方库）
 │   │
 │   └── pages                
-│   ├    └── index.html          # 匹配 view/index.html
-│   ├    └── one
-|   ├    ├    ├── images         # 图片资源
-|   ├    ├    ├── js             # javascript 资源
-|   ├    ├    ├    ├── index.js  # 匹配 view/one/index.html 的 js（入口js）
-|   ├    ├    ├    └── list.js   # 匹配 view/one/list.html 的 js（入口js）
-|   ├    ├    ├── style          # 样式 资源
-|   ├    ├    ├    ├── index.css
-|   ├    ├    ├    └── list.less
-│   ├    ├    ├── index.html     # 匹配 view/one/index.html
-│   ├    ├    └── list.html      # 匹配 view/one/index.html
-|   |    └── two
-|   ├    ├    ├── images         # 图片资源
-|   ├    ├    ├── js             # javascript 资源
-|   ├    ├    ├    ├── index.js  # 匹配 view/two/index.html 的 js（入口js）
-|   ├    ├    ├    └── list.js   # 匹配 view/two/list.html 的 js（入口js）
-|   ├    ├    ├── style          # 样式 资源
-|   ├    ├    ├    ├── index.css
-|   ├    ├    ├    └── list.less
-│   ├    ├    ├── index.html     # 匹配 view/two/index.html
-│   ├    ├    └── list.html      # 匹配 view/two/list.html
+│   │    │
+│   │    └── one
+|   │    │    ├── images         # 图片资源
+|   │    │    ├── js             # javascript 资源
+|   │    │    │    ├── index.js  # 匹配 view/one/index.html 的 js（入口js）
+|   │    │    │    └── list.js   # 匹配 view/one/list.html 的 js（入口js）
+|   │    │    ├── style          # 样式 资源
+|   │    │    │    ├── index.css
+|   │    │    │    └── list.less
+│   │    │    ├── index.html     # 匹配 view/one/index.html
+│   │    │    └── list.html      # 匹配 view/one/index.html
+|   │    └── two
+|   │         ├── images         # 图片资源
+|   │         ├── js             # javascript 资源
+|   │         │    ├── index.js  # 匹配 view/two/index.html 的 js（入口js）
+|   │         │    └── list.js   # 匹配 view/two/list.html 的 js（入口js）
+|   │         ├── style          # 样式 资源
+|   │         │    ├── index.css
+|   │         │    └── list.less
+│   │         ├── index.html     # 匹配 view/two/index.html
+│   │         └── list.html      # 匹配 view/two/list.html
 │   └── template                 # html 模板目录
 │       └── head.html         
 │       └── foot.html    

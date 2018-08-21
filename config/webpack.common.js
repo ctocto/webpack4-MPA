@@ -80,6 +80,7 @@ if (commonVendors && commonVendors.length) {
 
 module.exports = {
     context: process.cwd(),
+    target: 'web',
     entry: entrys,
     module: {
         rules: [
