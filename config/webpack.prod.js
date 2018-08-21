@@ -9,16 +9,17 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
-const BUILD_PATH = '../dist';
+const webpackrc = require('../.webpackrc.json');
 const PROJECT_ROOT = path.resolve(__dirname, '../');
+const BUILD_PATH = webpackrc.buildPath ? webpackrc.buildPath : './dist';
 const manifestPath = path.join(PROJECT_ROOT, 'src/manifest.json');
-const _dll = require('../.webpackrc.json');
+const _dll = webpackrc.dll;
 
 
 module.exports = merge(common, {
     mode: 'production',
     output: {
-        path: path.resolve(__dirname, BUILD_PATH),
+        path: path.resolve(PROJECT_ROOT, BUILD_PATH),
         filename: '[name].[chunkhash:8].js', //此选项决定了每个输出 bundle 的名称
         chunkFilename: '[name].[chunkhash:8].js', //此选项决定了按需加载(on-demand loaded)的 chunk 文件的名称
         publicPath: '/'

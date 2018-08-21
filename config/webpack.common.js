@@ -78,11 +78,6 @@ if (commonVendors && commonVendors.length) {
     };
 }
 
-// if (browserSupports && browserSupports.length) {
-    
-// }
-console.log(entrys)
-
 module.exports = {
     context: process.cwd(),
     entry: entrys,
