@@ -1,8 +1,8 @@
-# webpack2-demo
+# webpack4-demo
 
-基于 webpack2 实现的多入口项目脚手架。
+基于 webpack4 实现的多入口项目脚手架。
 
-使用 extract-text-webpack-plugin 实现 js 、css 公共代码提取，
+mini-css-extract-plugin 提取 CSS 文件，
 html-webpack-plugin 实现 html 多入口，
 less-loader 实现 less 编译，
 postcss-loader 配置 autoprefixer 实现自动添加浏览器兼容前缀，
@@ -20,7 +20,7 @@ npm install
 ### 开发
 
 ```
-npm run dev
+npm start
 ```
 
 ### 构建
@@ -34,13 +34,18 @@ npm run build
 ```
 ├── build                        # 构建后的目录
 ├── config                       # 项目配置文件
-│   ├── webpack.config.js        # webpack 配置引导文件
-|   ├── webpack.dev.config.js    # webpack 开发配置
-|   ├── webpack.prod.config.js   # webpack 生产配置
+│   ├── webpack.common.js        # webpack 公共配置
+|   ├── webpack.dev.js           # webpack 开发配置
+|   ├── webpack.prod.js          # webpack 生产配置
+|   ├── webpack.dll.js           # webpack dll
 │   └── postcss.config.js        # postcss 配置文件
 ├── src                          # 程序源文件
 │   └── lib                      # JS 库等，不参与路由匹配      
 │   ├    └── jquery.js 
+│   │
+│   ├── dll
+│   ├    └── dll.*.*.js          # dll 文件（第三方库）
+│   │
 │   └── pages                
 │   ├    └── index.html          # 匹配 view/index.html
 │   ├    └── one
@@ -65,7 +70,12 @@ npm run build
 │   ├    ├    └── list.html      # 匹配 view/two/list.html
 │   └── template                 # html 模板目录
 │       └── head.html         
-│       └── foot.html            
+│       └── foot.html    
+│
+├── .babelre
+│
+├── .webpackrc.json              # webpack 用户配置文件
+│    
 ```
 
 > 待完善

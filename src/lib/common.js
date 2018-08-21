@@ -1,3 +1,3 @@
-import './css_reset/mobile.common.css'
+import './style/mobile.common.css'
 
-alert(111111111111111)
+console.log('%c tip: ', 'background:#292828;color:#67dc37', 'This is common.js')

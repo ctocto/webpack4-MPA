@@ -1,7 +1,14 @@
+let browserSupports = require('../.webpackrc.json').browserSupports; 
+
+browserSupports = browserSupports ? browserSupports : ['last 2 versions', 'iOS >= 7', 'Android >= 4.0'];
+
 module.exports = {
 	plugins: [
 		require('autoprefixer')({
-			browsers: ['> 1%', 'last 5 versions', 'not ie <= 9'],
-		})
+			browsers: browserSupports,
+		}),
+		// require('postcss-px2rem')({
+		// 	remUnit: 100
+		// })
 	]
 }

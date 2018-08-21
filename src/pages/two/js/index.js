@@ -1,4 +1,3 @@
-import '../../../lib/css_reset/mobile.common.css';
+// import '../../../lib/style/mobile.common.css';
 import '../style/index.css';
-document.write('webpack demo')
-console.log(1111)
+// console.log(1111)

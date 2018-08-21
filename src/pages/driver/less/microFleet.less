@@ -1,0 +1,57 @@
+html,body{
+    background: #eee;
+}
+#microFleet {
+    padding: 0.3rem;
+    margin-top: 0.2rem;
+    background: #fff;
+    border-top:0.01rem solid #ddd;
+}
+
+#microFleet h2 {
+    font-size: 0.32rem;
+    color: #333;
+    letter-spacing: 0;
+    line-height: 0.32rem;
+    margin-top: 0.1rem;
+    margin-bottom: 0.2rem;
+}
+
+#microFleet p {
+    font-size: 0.28rem;
+    color: #666;
+    letter-spacing: 0;
+    line-height: 0.48rem;
+    margin-bottom: 0.3rem;
+}
+#microFleet .indent {
+    text-indent: 2em;
+}
+#microFleet .copyright{
+    position: relative;
+    padding-top: 0.2rem;
+    font-size: 0.26rem;
+    color: #999;
+    text-align: center;
+
+    &::before{
+        content: "";
+        position: absolute;
+        left: 1.1rem;
+        top: 0.42rem;
+        position: absolute;
+        width: 0.2rem;
+        height: 1px;
+        background: #bcbcbc;
+    }
+
+    &::after{
+        content: "";
+        position: absolute;
+        top: 0.42rem;
+        right: 1.1rem;
+        width: 0.2rem;
+        height: 1px;
+        background: #bcbcbc;
+    }
+}
