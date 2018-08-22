@@ -1,0 +1,87 @@
+#reChargeExplain{
+    font-size: 0.28rem;
+    padding: 0.14rem 0.26rem 0.5rem 0.26rem;
+    margin-bottom: 0.5rem;
+    article{
+        margin-top: 0.48rem;
+        h2{
+            font-size: 0.28rem;
+        }
+    }
+    section{
+        margin-top: 0.24rem;
+    }
+    h3{
+        font-size: 0.28rem;
+        line-height: 1.7;
+        padding: 0.1rem 0;
+    }
+    p{
+        line-height: 1.7;
+    }
+    .fix-bottom-wrap{
+        padding-top: 0.36rem;
+        position: fixed;
+        width: 100%;
+        bottom: 0;
+        left: 0;
+        z-index: 1;
+        box-shadow: 0 0 6px 0 #E8E9EB;
+        background: #fff;
+        .rule{
+            text-align: center;
+            input{
+                position: relative;
+                width: 0.36rem;
+                height: 0.36rem;
+                vertical-align: text-top;
+                border: none;
+                background: transparent;
+                -webkit-appearance: none;
+                &::after{
+                    content: "";
+                    position: absolute;
+                    left: 0;
+                    top: 0;
+                    width: 0.36rem;
+                    height: 0.36rem;
+                    background: url('../img/huilian_charge_no_select.png') no-repeat;
+                    background-size: 100%;
+                }
+                &:checked::after{
+                    content: "";
+                    position: absolute;
+                    left: 0;
+                    top: 0;
+                    width: 0.36rem;
+                    height: 0.36rem;
+                    background: url('../img/huilian_charge_agreement_selected.png') no-repeat;
+                    background-size: 100%;
+                }
+            }
+            label{
+                font-size: 0.28rem;
+                color: #6E7382;
+            }
+            .rule-name{
+                color: #000;
+            }
+        }
+        .yes-btn{
+            margin: 0.32rem auto 0.24rem;
+            display: block;
+            width: 7.02rem;
+            height: 1rem;
+            line-height: 1rem;
+            text-align: center;
+            background: #DEDFE2;
+            border-radius: 1rem;
+            color: #fff;
+            font-size: 0.36rem;
+            &.allow-yes-btn{
+                background: #E62828;
+                box-shadow: 0 9px 14px -8px rgba(235,34,34,0.52);
+            }
+        }
+    }
+}

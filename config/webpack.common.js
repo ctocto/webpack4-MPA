@@ -7,14 +7,14 @@ const IsProduction = process.env.NODE_ENV === 'production';
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const AddAssetHtmlPlugin = require('add-asset-html-webpack-plugin');
-const HappyPack = require('happypack');
-const HappyThreadPool = HappyPack.ThreadPool({ size: (IsProduction ? 10 : 4) });
+// const HappyPack = require('happypack');
+// const HappyThreadPool = HappyPack.ThreadPool({ size: (IsProduction ? 10 : 4) });
 
 const PostcssConfigPath = './config/postcss.config.js';
 const PROJECT_ROOT = path.resolve(__dirname, '../');
 const manifestPath = path.join(PROJECT_ROOT, 'src/manifest.json');
 const webpackrc = require('../.webpackrc.json'); 
-const {commonVendors, browserSupports} = webpackrc; 
+const {commonVendors} = webpackrc; 
 
 
 //入口
@@ -135,18 +135,18 @@ module.exports = {
         ]
     },
     plugins: [
-        new HappyPack({
-            id: 'js',
-            threads: 4,
-			threadPool: HappyThreadPool,
-			loaders: ['babel-loader']
-		}),
-		new HappyPack({
-            id: 'styles',
-            threads: 4,
-			threadPool: HappyThreadPool,
-			loaders: ['style-loader', 'css-loader', 'less-loader', 'postcss-loader']
-		}),
+        // new HappyPack({
+        //     id: 'js',
+        //     threads: 4,
+		// 	threadPool: HappyThreadPool,
+		// 	loaders: ['babel-loader']
+		// }),HappyPack
+		// new ({
+        //     id: 'styles',
+        //     threads: 4,
+		// 	threadPool: HappyThreadPool,
+		// 	loaders: ['style-loader', 'css-loader', 'less-loader', 'postcss-loader']
+		// }),
         new webpack.DllReferencePlugin({
             context: PROJECT_ROOT,
             manifest: manifestPath
