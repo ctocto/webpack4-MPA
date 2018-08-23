@@ -22,7 +22,7 @@ const obj = {
 };
 
 let objDeep = _.cloneDeep(obj);
-objDeep.parent.child1 = 33333;
+objDeep.parent.child1 = 666;
 console.log(obj, objDeep);
 
 const image = require('../images/1533274598.png');
