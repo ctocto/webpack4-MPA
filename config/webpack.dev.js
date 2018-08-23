@@ -30,6 +30,7 @@ module.exports = merge(common, {
         port: 8088,
         historyApiFallback: true,
         host: ip.address(),
+        inline: true
     },
     watchOptions: {
         aggregateTimeout: 300,

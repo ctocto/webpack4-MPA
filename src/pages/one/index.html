@@ -1,13 +1,48 @@
-#include('../../template/head.html')
-	<title>index</title>
-	<meta name="description" content="">
-</head>
-    <body>
-        <div>
-            <p>测试</p>
-            <h2>shenmekandk</h2>
-            <img src="./images/1533274598.png" class="fill_img">
-            <div id="div1"></div>
+<% extend('../../template/layout.art') %>
+
+<% block('title', function(){ %>page one<% }) %>
+
+<% block('content', function(){ %>
+    <div id="wrapper"></div>
+    <script id="goods-list" type="text/html">
+   
+        <div class="list-container">
+            <ul class="pic-list">
+                <? for(var i = 0; i < subjects.length; i++) { ?>
+                <li class="spread-item lb-lazy J_ListItem">
+                    <div class="spread-item-wrapper">
+                        <div>
+                            <div class="spread-banner">
+                                <img class="" data-type="widthFixed" data-size="700" alt="" data-src-checked="true" src="<?= subjects[i].subjectLogoUrl ?>">
+                            </div>
+                            <a class="desc" data-spm="d11" data-cdspm="-1.d11" data-href="//h5.m.taobao.com/findgoodshop/ugc-topic.html?subjectId=617&amp;scm=20140645.zhuantitab.617.1">
+                                <h3 style="display: none;"><s></s>好店专题<s></s></h3>
+                                <h3 class="ugc"><s></s>大家贡献の好店<s></s></h3>
+                                <h2>必刷国际大牌TOP款<s></s></h2>
+                                <div class="topic-data">
+                                    <span>63家好店</span>
+                                    <span class="view-number">
+                                        29545次浏览
+                                    </span>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="recommend-info">
+                            <ul>
+                            </ul>
+                            <span>等<strong></strong>人贡献了<strong></strong>好店</span>
+                        </div>
+                        <div class="more-operation">
+                            <div class="left">
+                            </div>
+                            <div class="right">
+                                <a class="shop-topic-entry" data-spm="d13" data-cdspm="-1.d13" data-href="//h5.m.taobao.com/findgoodshop/ugc-topic.html?subjectId=617&amp;scm=20140645.zhuantitab.617.1">朕来查阅</a>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <? } ?>
+            </ul>
         </div>
-    </body>
-</html>
+    </script>
+<% }) %>

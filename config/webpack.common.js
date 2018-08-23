@@ -9,13 +9,18 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const AddAssetHtmlPlugin = require('add-asset-html-webpack-plugin');
 // const HappyPack = require('happypack');
 // const HappyThreadPool = HappyPack.ThreadPool({ size: (IsProduction ? 10 : 4) });
+let runtime = require('art-template/lib/runtime');
 
 const PostcssConfigPath = './config/postcss.config.js';
 const PROJECT_ROOT = path.resolve(__dirname, '../');
 const manifestPath = path.join(PROJECT_ROOT, 'src/manifest.json');
 const webpackrc = require('../.webpackrc.json'); 
 const {commonVendors} = webpackrc; 
-
+// @see http://aui.github.io/art-template/webpack/index.html#Filter
+// 模板变量
+runtime.Date = () => {
+	return global.Date
+}
 
 //入口
 let entrys = (() => {
@@ -127,11 +132,18 @@ module.exports = {
                 }
             },
             {
-                test: /\.html$/,
-                use: [{
-                    loader: 'html-withimg-loader'
-                }]
-            }
+                test: /\.(htm|html|art)$/i,
+                loader: 'art-template-loader',
+                options: {
+                    imports: require.resolve('art-template/lib/runtime')
+                }
+            },
+            // {
+            //     test: /\.html$/,
+            //     use: [{
+            //         loader: 'html-withimg-loader'
+            //     }]
+            // }
         ]
     },
     plugins: [
@@ -140,8 +152,8 @@ module.exports = {
         //     threads: 4,
 		// 	threadPool: HappyThreadPool,
 		// 	loaders: ['babel-loader']
-		// }),HappyPack
-		// new ({
+        // }),
+		// new HappyPack({
         //     id: 'styles',
         //     threads: 4,
 		// 	threadPool: HappyThreadPool,

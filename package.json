@@ -8,11 +8,15 @@
     "start": "cross-env NODE_ENV=development webpack-dev-server  --progress --colors --watch --config config/webpack.dev.js --open",
     "build": "cross-env NODE_ENV=production webpack --progress --colors --config config/webpack.prod.js --build-delimiter='======== 打包完成 ========'"
   },
-  "keywords": ["webpack4", "MPA"],
+  "keywords": [
+    "webpack4",
+    "MPA"
+  ],
   "author": "northerner",
   "license": "ISC",
   "devDependencies": {
     "add-asset-html-webpack-plugin": "^2.1.3",
+    "art-template-loader": "^1.4.3",
     "babel-core": "^6.26.3",
     "babel-loader": "^7.1.5",
     "babel-plugin-syntax-dynamic-import": "^6.18.0",
@@ -41,6 +45,7 @@
     "webpack-merge": "^4.1.4"
   },
   "dependencies": {
+    "art-template": "^4.13.0",
     "babel-polyfill": "^6.26.0",
     "lodash": "^4.17.10",
     "zepto": "1.2.0"
