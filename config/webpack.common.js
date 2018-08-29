@@ -87,6 +87,7 @@ module.exports = {
     context: process.cwd(),
     target: 'web',
     entry: entrys,
+    stats: 'minimal',
     module: {
         rules: [
             {

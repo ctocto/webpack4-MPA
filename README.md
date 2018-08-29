@@ -23,6 +23,12 @@ npm install
 npm start
 ```
 
+### 预览
+
+```
+http://10.50.36.112:8088/webpack-dev-server
+```
+
 ### 构建
 
 ```
