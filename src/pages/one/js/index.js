@@ -1,13 +1,11 @@
-import '../style/style.less';
+import '../style/style.less'
 
 // const _ = require('lodash');
 
-import template from '../../../lib/artTemplate';
+import template from '../../../lib/artTemplate'
 
-import goodsList from '../mock/goodsList.json';
+import goodsList from '../mock/goodsList'
 
-const html = template('goods-list', goodsList.data);
+const html = template('goods-list', goodsList.data)
 
-
-document.getElementById('wrapper').innerHTML = html;
-
+document.getElementById('wrapper').innerHTML = html

@@ -1,45 +1,43 @@
-const merge = require('webpack-merge');
-const common = require('./webpack.common.js');
-const proxy = require('../.webpackrc.json').proxy;
-
-const webpack = require('webpack');
-const path = require('path');
-const ip = require('ip');
-
-const BUILD_Dir = '../';
-
+const webpack = require("webpack");
+const merge = require("webpack-merge");
+const common = require("./webpack.common.js");
+const proxy = require("../.webpackrc.json").proxy;
+const { getPort, getHost } = require('./utils');
 
 module.exports = merge(common, {
-    mode: 'development',
-    cache: true,
-    output: {
-        path: path.resolve(__dirname, BUILD_Dir),
-        filename: '[name].js', //此选项决定了每个输出 bundle 的名称
-        chunkFilename: '[name].js', //此选项决定了按需加载(on-demand loaded)的 chunk 文件的名称
-        publicPath: '/'
+  mode: "development",
+  cache: true,
+  output: {
+    filename: "[name].js", //此选项决定了每个输出 bundle 的名称
+    chunkFilename: "[name].js", //此选项决定了按需加载(on-demand loaded)的 chunk 文件的名称
+    publicPath: "/"
+  },
+  devtool: "inline-source-map",
+  plugins: [new webpack.HotModuleReplacementPlugin()],
+  devServer: {
+    contentBase: false,
+    hot: true,
+    port: getPort(),
+    historyApiFallback: true,
+    host: getHost(),
+    inline: true,
+    compress: true,
+    clientLogLevel: "none",
+    noInfo: true,
+    stats: "none",
+    open: true,
+    overlay: {
+      // 当出现编译器错误或警告时，就在网页上显示一层黑色的背景层和错误信息
+      errors: true
     },
-    devtool: 'inline-source-map',
-    plugins: [
-        new webpack.HotModuleReplacementPlugin()
-    ],
-    devServer: {
-        contentBase: [
-            path.join(__dirname, 'src/')
-        ],
-        hot: true,
-        port: 8088,
-        historyApiFallback: true,
-        host: ip.address(),
-        inline: true
-    },
-    watchOptions: {
-        aggregateTimeout: 300,
-        poll: 1000
-    },
+    useLocalIp: true,
+  },
+  watch: true,
+  stats: "none",
 });
 
-if (proxy && JSON.stringify(proxy) !== '{}') {
-    Object.assign(module.exports.devServer, {
-        proxy
-    });
+if (proxy && JSON.stringify(proxy) !== "{}") {
+  Object.assign(module.exports.devServer, {
+    proxy
+  });
 }
