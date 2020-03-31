@@ -1,9 +1,8 @@
 const path = require("path");
-const glob = require("glob");
 const webpack = require("webpack");
 
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
+
 const AddAssetHtmlPlugin = require("add-asset-html-webpack-plugin");
 const WebpackBuildNotifierPlugin = require("webpack-build-notifier");
 const FirendlyErrorePlugin = require("friendly-errors-webpack-plugin");
@@ -18,7 +17,7 @@ const PostcssConfigPath = "./config/postcss.config.js";
 const PROJECT_ROOT = path.resolve(__dirname, "../");
 const manifestPath = path.join(PROJECT_ROOT, "src/manifest.json");
 const webpackrc = require("../.webpackrc.json");
-const { getDevDoneLog } = require('./utils');
+const { getDevDoneLog, getEntrys, getHtmlPlugins } = require('./utils');
 const { commonVendors } = webpackrc;
 // @see http://aui.github.io/art-template/webpack/index.html#Filter
 // 模板变量
@@ -27,55 +26,10 @@ runtime.Date = () => {
 };
 
 //入口
-let entrys = (() => {
-  let entryList = {};
-
-  const pattern = "./src/pages/**/js/*.js";
-  glob.sync(pattern).forEach(entry => {
-    let basename = path.basename(entry, path.extname(entry)),
-      pathname = path.dirname(entry);
-
-    let key = entry
-      .replace(/\.js$/, "")
-      .split("/pages/")[1]
-      .replace("/js", "");
-
-    const entryFile = pathname + "/" + basename;
-    entryList[key] = entryFile;
-  });
-
-  return entryList;
-})();
+let entrys = getEntrys("./src/pages/**/js/*.js");
 
 //html plugin
-let htmlPlugins = (() => {
-  const res = Object.keys(entrys).map(val => {
-    let pagePath = val.split("/")[0];
-    let pageName = val.split("/")[1];
-
-    return new HtmlWebpackPlugin({
-      filename: `${pagePath}/${pageName}.html`, //输出的 HTML 文件名，默认是 index.html, 也可以直接配置带有子目录。
-      template: `./src/pages/${pagePath}/${pageName}.html`, //模板文件路径，支持加载器
-      inject: "body",
-      chunks: ["runtime", "common", "vendors", val],
-      chunksSortMode: "none",
-      minify: {
-        removeComments: true,
-        collapseWhitespace: true,
-        removeRedundantAttributes: true,
-        useShortDoctype: true,
-        removeEmptyAttributes: false,
-        removeStyleLinkTypeAttributes: true,
-        keepClosingSlash: true,
-        minifyJS: true,
-        minifyCSS: true,
-        minifyURLs: true
-      }
-    });
-  });
-
-  return res;
-})();
+let htmlPlugins = getHtmlPlugins(entrys);
 
 if (commonVendors && commonVendors.length) {
   entrys = {
@@ -202,8 +156,10 @@ module.exports = {
       logo: path.resolve(PROJECT_ROOT, "./public/favicon.ico"),
       suppressSuccess: true
     }),
+    // 告诉 Webpack 使用了哪些动态链接库
     new webpack.DllReferencePlugin({
       context: PROJECT_ROOT,
+      // 描述 lodash 动态链接库的文件内容
       manifest: manifestPath
     }),
     ...htmlPlugins,

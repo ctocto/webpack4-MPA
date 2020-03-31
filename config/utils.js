@@ -1,5 +1,8 @@
+const path = require("path");
 const chalk = require("chalk");
 const ip = require("ip");
+const glob = require("glob");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 const port = 8089;
 
@@ -29,9 +32,59 @@ function getDevDoneLog() {
   To create a production build, use ${chalk.hex('#00a6cc')('npm run build')}.`;
 }
 
+function getEntrys(pattern) {
+  let entryList = {};
+  
+    glob.sync(pattern).forEach(entry => {
+      let basename = path.basename(entry, path.extname(entry)),
+        pathname = path.dirname(entry);
+  
+      let key = entry
+        .replace(/\.js$/, "")
+        .split("/pages/")[1]
+        .replace("/js", "");
+  
+      const entryFile = pathname + "/" + basename;
+      entryList[key] = entryFile;
+    });
+  
+    return entryList;
+}
+
+function getHtmlPlugins(entrys) {
+  const res = Object.keys(entrys).map(val => {
+    let pagePath = val.split("/")[0];
+    let pageName = val.split("/")[1];
+
+    return new HtmlWebpackPlugin({
+      filename: `${pagePath}/${pageName}.html`, //输出的 HTML 文件名，默认是 index.html, 也可以直接配置带有子目录。
+      template: `./src/pages/${pagePath}/${pageName}.html`, //模板文件路径，支持加载器
+      inject: "body",
+      chunks: ["runtime", "common", "vendors", val],
+      chunksSortMode: "none",
+      minify: {
+        removeComments: true,
+        collapseWhitespace: true,
+        removeRedundantAttributes: true,
+        useShortDoctype: true,
+        removeEmptyAttributes: false,
+        removeStyleLinkTypeAttributes: true,
+        keepClosingSlash: true,
+        minifyJS: true,
+        minifyCSS: true,
+        minifyURLs: true
+      }
+    });
+  });
+
+  return res;
+}
+
 module.exports = {
   getPort,
   getHost,
   getDevDoneLog,
-  clearConsole
+  clearConsole,
+  getEntrys,
+  getHtmlPlugins
 }

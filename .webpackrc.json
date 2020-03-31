@@ -2,7 +2,6 @@
     "dll": {
         "enable": true,
         "include": [
-            "babel-polyfill",
             "lodash"
         ]
     },

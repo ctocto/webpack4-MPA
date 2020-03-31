@@ -15,8 +15,6 @@ const OptmizeCssAssetsWebpackPlugin = require("optimize-css-assets-webpack-plugi
 const webpackrc = require("../.webpackrc.json");
 const PROJECT_ROOT = path.resolve(__dirname, "../");
 const BUILD_PATH = webpackrc.buildPath ? webpackrc.buildPath : "./dist";
-const manifestPath = path.join(PROJECT_ROOT, "src/manifest.json");
-const _dll = webpackrc.dll;
 
 module.exports = merge(common, {
   mode: "production",
@@ -24,11 +22,11 @@ module.exports = merge(common, {
     path: path.resolve(PROJECT_ROOT, BUILD_PATH),
     filename: "[name].[chunkhash:8].js", //此选项决定了每个输出 bundle 的名称
     chunkFilename: "[name].[chunkhash:8].js", //此选项决定了按需加载(on-demand loaded)的 chunk 文件的名称
-    publicPath: "/"
+    publicPath: webpackrc.publicPath || "/"
   },
   devtool: "source-map", //避免在生产中使用 inline-*** 和 eval-***，因为它们可以增加 bundle 大小，并降低整体性能。
   optimization: {
-    runtimeChunk: true,
+    runtimeChunk: true, //指的是 webpack 的运行环境(具体作用就是模块解析, 加载) 和 模块信息清单
     minimizer: [
       new TerserPlugin({
         terserOptions: {
@@ -120,15 +118,6 @@ module.exports = merge(common, {
     })
   ]
 });
-
-if (_dll.enabled) {
-  module.exports.plugins.push(
-    new Webpack.DllReferencePlugin({
-      context: PROJECT_ROOT,
-      manifest: require(manifestPath)
-    })
-  );
-}
 
 module.exports.plugins.unshift(
   new CleanWebpackPlugin()

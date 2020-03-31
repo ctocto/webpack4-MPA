@@ -1,8 +1,7 @@
-#include('../../template/head.html')
-	<title>User</title>
-	<meta name="description" content="">
-</head>
-<body>
-    <div class="page_type_h5"></div>
-</body>
-</html>
+<% extend('../../template/layout.art') %>
+
+<% block('title', function(){ %>首页<% }) %>
+
+<% block('content', function(){ %>
+	<div id="root">content</div>
+<% }) %>
