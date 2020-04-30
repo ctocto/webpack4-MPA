@@ -10,11 +10,14 @@ const BundleAnalyzerPlugin = require('webpack-bundle-analyzer')
 const TerserPlugin = require('terser-webpack-plugin');
 const OptmizeCssAssetsWebpackPlugin = require('optimize-css-assets-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
+const CompressionWebpackPlugin = require('compression-webpack-plugin')
 
 const common = require('./webpack.common.js');
 const {
   buildPath = './dist',
-  publicPath = '/'
+  publicPath = '/',
+  productionGzip = false,
+  productionGzipExtensions = /\.(js|css|json|txt|html|ico|svg)(\?.*)?$/i
 } = require('../.webpackrc');
 const { PROJECT_ROOT } = require('./utils');
 
@@ -127,3 +130,18 @@ module.exports = merge(common, {
 module.exports.plugins.unshift(
   new CleanWebpackPlugin()
 );
+
+// 开启gzip
+if (productionGzip) {
+  module.exports.plugins.push(new CompressionWebpackPlugin({
+    filename: "[path].gz[query]",
+    algorithm: 'gzip',
+    test: productionGzipExtensions,
+    // 只处理大于xx字节 的文件，默认：0
+    threshold: 10240,
+    // 示例：一个1024b大小的文件，压缩后大小为768b，minRatio : 0.75
+    minRatio: 0.8, // 默认: 0.8
+    // 是否删除源文件，默认: false
+    deleteOriginalAssets: false
+  }));
+}
