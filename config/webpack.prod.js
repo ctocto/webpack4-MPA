@@ -119,7 +119,7 @@ module.exports = merge(common, {
       openAnalyzer: true,
       logLevel: 'silent'
     }),
-    new CopyPlugin[
+    new CopyPlugin([
       { from: 'public' },
     ]),
   ]

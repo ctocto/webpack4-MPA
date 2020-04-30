@@ -3,7 +3,7 @@ const path = require('path');
 
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
-const PROJECT_ROOT = path.resolve(__dirname, '../');
+const { PROJECT_ROOT } = require('./utils');
 const entrys = require('../.webpackrc').dll.include;
 const manifestPath = path.join(PROJECT_ROOT, 'src/manifest.json');
 
