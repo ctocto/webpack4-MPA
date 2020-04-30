@@ -1,0 +1,58 @@
+{
+  "root": true,
+  "parser": "babel-eslint",
+  "extends": [
+    "airbnb-base",
+    "plugin:react/recommended",
+    "prettier",
+    "plugin:prettier/recommended",
+    "prettier/react"
+  ],
+  "plugins": [
+    "react",
+    "prettier"
+  ],
+  "parserOptions": {
+    "ecmaVersion": 6,
+    "sourceType": "module",
+    "ecmaFeatures": {
+        "jsx": true
+    }
+  },
+  "settings" : {
+    "import/extensions": ["js", "json"],
+    "import/resolver": {
+      "alias": [
+        ["@", "./src"]
+      ]
+    }
+  },
+  "rules": {
+    "prettier/prettier": [
+      "error",
+      {
+        "singleQuote": true,
+        "semi": false,
+        "trailingComma": "all",
+        "bracketSpacing": true,
+        "jsxBracketSameLine": true
+      }
+    ],
+    "react/prop-types":[0],
+    "react/react-in-jsx-scope":[0],
+    "react/jsx-filename-extension":[0],
+    "import/extensions": [2, "never", { "web.js": "never", "json": "never" }],
+    "import/no-extraneous-dependencies": [2, { "devDependencies": true }],
+    "import/no-unresolved": [2, { "ignore": ["antd"] }],
+    "complexity": [2, 15],
+    "max-depth": [2, 4],
+    "max-nested-callbacks": [2, 3],
+    "max-params": [2, 5],
+    "max-statements": [2, 50],
+    "semi": [2, "never"]
+  },
+  "env": {
+    "browser": true,
+    "es6": true
+  }
+}

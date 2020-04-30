@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+    <meta content="telephone=no" name="format-detection" />
+    <meta content="" name="flexible" />
+	<title>{{block 'title'}}H5模板{{/block}}</title>
+	<meta name="description" content="{{block 'description'}}描述{{/block}}">
+    {{ include './head.art' }}
+    <% block('head', function(){ %><% }) %>
+</head>
+    <body>
+        <div class="page-body page-type-h5">
+            {{block 'content'}}{{/block}}
+        </div>
+    </body>
+</html>
