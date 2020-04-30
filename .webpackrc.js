@@ -5,7 +5,6 @@ module.exports = {
     enable: true,
     include: ['lodash']
   },
-  buildPath: '',
   commonVendors: ['./src/lib/common.js'],
   browserSupports: ['last 2 versions', 'iOS >= 7', 'Android >= 4.0'],
   alias: {

@@ -1,7 +1,6 @@
-const merge = require('webpack-merge');
-
-const webpack = require('webpack');
 const path = require('path');
+const merge = require('webpack-merge');
+const webpack = require('webpack');
 const ip = require('ip');
 
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
@@ -22,7 +21,7 @@ const { PROJECT_ROOT } = require('./utils');
 module.exports = merge(common, {
   mode: 'production',
   output: {
-    path: path.resolve(PROJECT_ROOT, buildPath),
+    path: path.resolve(PROJECT_ROOT, buildPath || './dist'),
     filename: '[name].[chunkhash:8].js', //此选项决定了每个输出 bundle 的名称
     chunkFilename: '[name].[chunkhash:8].js', //此选项决定了按需加载(on-demand loaded)的 chunk 文件的名称
     publicPath
