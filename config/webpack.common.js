@@ -15,7 +15,7 @@ const IsDev = process.env.NODE_ENV === 'development';
 const PostcssConfigPath = './config/postcss.config.js';
 const { getDevDoneLog, getEntrys, getHtmlPlugins, PROJECT_ROOT } = require('./utils');
 const manifestPath = path.join(PROJECT_ROOT, 'src/manifest.json');
-const { commonVendors, alias } = require('../.webpackrc');
+const { commonVendors, alias, dll } = require('../.webpackrc');
 
 //入口
 let entrys = getEntrys('./src/pages/**/js/*.js');
@@ -153,15 +153,19 @@ module.exports = {
       logo: path.resolve(PROJECT_ROOT, './public/favicon.ico'),
       suppressSuccess: true
     }),
-    // 告诉 Webpack 使用了哪些动态链接库
-    new webpack.DllReferencePlugin({
-      context: PROJECT_ROOT,
-      // 描述 lodash 动态链接库的文件内容
-      manifest: manifestPath
-    }),
     ...htmlPlugins,
-    new AddAssetHtmlPlugin({
-      filepath: path.resolve(PROJECT_ROOT, './src/dll/*.js')
-    })
   ]
 };
+
+// 开启 dll
+if (dll.enable) {
+  // 告诉 Webpack 使用了哪些动态链接库
+  module.exports.plugins.splice(-1, 0, new webpack.DllReferencePlugin({
+    context: PROJECT_ROOT,
+    // 描述 lodash 动态链接库的文件内容
+    manifest: manifestPath
+  }));
+  module.exports.plugins.push(new AddAssetHtmlPlugin({
+    filepath: path.resolve(PROJECT_ROOT, './src/dll/*.js')
+  }));
+}
