@@ -41,20 +41,20 @@ module.exports = {
   module: {
     rules: [
       // 前置(在执行编译之前去执行eslint-loader检查代码规范，有报错就不执行编译)
-      {
-        enforce: 'pre',
-        test: /.js$/,
-        loader: 'eslint-loader',
-        include: path.resolve(PROJECT_ROOT, 'src/pages'),
-        options: {
-          fix: true,
-          cache: IsDev,
-          failOnError: IsProduction, // 生产环境发现代码不合法，则中断编译
-          useEslintrc: true,
-          emitWarning: IsDev
-        },
-        exclude: /node_modules|dll/
-      },
+      // {
+      //   enforce: 'pre',
+      //   test: /.js$/,
+      //   loader: 'eslint-loader',
+      //   include: path.resolve(PROJECT_ROOT, 'src/pages'),
+      //   options: {
+      //     fix: true,
+      //     cache: IsDev,
+      //     failOnError: IsProduction, // 生产环境发现代码不合法，则中断编译
+      //     useEslintrc: true,
+      //     emitWarning: IsDev
+      //   },
+      //   exclude: /node_modules|dll/
+      // },
       {
         test: /\.js$/,
         loaders: ['babel-loader'],
