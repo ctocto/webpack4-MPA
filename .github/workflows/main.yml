@@ -35,5 +35,4 @@ jobs:
 
       # Runs a set of commands using the runners shell
       - name: Deply
-        run: |
-          echo test, and deploy your project.
+        run: echo test, and deploy your project.
