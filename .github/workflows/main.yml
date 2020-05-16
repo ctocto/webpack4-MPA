@@ -35,7 +35,7 @@ jobs:
       
       # Upload a Build Artifact
       - name: uploads artifacts
-      - uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v2
         with:
           name: dist
           path: dist
