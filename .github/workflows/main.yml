@@ -13,7 +13,6 @@ jobs:
   # This workflow contains a single job called "build"
   build:
     # The type of runner that the job will run on
-    name: deploy to staging
     runs-on: ubuntu-latest
     if: github.event.repository.owner.id == github.event.sender.id
     
@@ -21,10 +20,10 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - name: Checkout
-      - uses: actions/checkout@v2
+        uses: actions/checkout@v2
         
       - name: Setup node
-      - uses: actions/setup-node@v1
+        uses: actions/setup-node@v1
         with:
           node-version: '12'
 
