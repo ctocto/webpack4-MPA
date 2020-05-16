@@ -27,23 +27,19 @@ jobs:
         with:
           node-version: '12'
 
-
       # Install packages and build
       - name: Install and Build
         run: |
           npm install
           npm run-script build
-          
+      
+      # Upload a Build Artifact
+      - name: uploads artifacts
       - uses: actions/upload-artifact@v2
         with:
           name: dist
           path: dist
-
-      - uses: actions/download-artifact@v2
-        with:
-          name: dist
-          path: dist
     
-      - name: Display structure of downloaded files
+      - name: Display structure of dist files
         run: ls -R
         working-directory: dist
