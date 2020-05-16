@@ -115,11 +115,9 @@ module.exports = merge(common, {
     }),
     new webpack.HashedModuleIdsPlugin(),
     new BundleAnalyzerPlugin({
-      analyzerMode: 'server',
-      anaylzerHost: ip.address(),
-      anaylzerPort: '8888',
-      openAnalyzer: true,
-      logLevel: 'silent'
+      analyzerMode: 'disabled', // 不启动展示打包报告的http服务器
+      statsFilename: 'stats.json',
+      generateStatsFile: true, // 是否生成stats.json文件
     }),
     new CopyPlugin([
       { from: 'public' },
