@@ -16,16 +16,22 @@ inquirer
       // filter: function(val) {
       //   return val.toLowerCase();
       // }
+    },
+    {
+      type: 'list',
+      name: 'workflow',
+      message: 'Please select workflow',
+      choices: ['webhook_publish', 'webhook_test'],
     }
   ])
   .then(answers => {
     console.log(JSON.stringify(answers, null, '  '));
-    post(answers.user);
+    post(answers);
   });
 
-function post(user) {
+function post({ user, workflow }) {
   const data = JSON.stringify({
-    "event_type": "webhook_publish"
+    "event_type": workflow
   });
   const host = 'api.github.com'; // api.github.com
   const path = `/repos/${user}/webpack4-MPA/dispatches`; // /repos/ctocto/webpack4-MPA/dispatches
@@ -37,7 +43,7 @@ function post(user) {
     headers: {  
       'User-Agent': 'request', // https://stackoverflow.com/questions/39907742/github-api-is-responding-with-a-403-when-using-requests-request-function/39912696
       'Accept': 'application/vnd.github.everest-preview+json',  
-      'Authorization': 'token e36d6144ebf1049f45da1c77e91aeb7868254820',
+      'Authorization': 'token 9ac5e7266b25bd042626735d8594d9ec07918880',
       'Content-Type' : 'application/json',
       'Content-Length' : Buffer.byteLength(data, 'utf8')
     } 
