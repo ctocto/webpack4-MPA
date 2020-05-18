@@ -48,16 +48,12 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: console log
-        run: |
-          echo consle log 111111
-          pwd
-          ls
 
       - name: Download dist folder
         uses: actions/download-artifact@v2
         with:
           name: dist
+          path: dist
 
       - name: Download util
         run: |
@@ -71,7 +67,6 @@ jobs:
           ls
           cd obsutil_linux_amd64
           chmod 755 obsutil
-          pwd
           pwd
           ls
           ./obsutil ls -s
