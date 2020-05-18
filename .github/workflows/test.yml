@@ -48,14 +48,20 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: console log
+        run: |
+          echo consle log 111111
+          pwd
+          ls
 
-#       - name: Download dist folder
-#         uses: actions/download-artifact@v2
-#         with:
-#           name: dist
+      - name: Download dist folder
+        uses: actions/download-artifact@v2
+        with:
+          name: dist
 
       - name: Download util
         run: |
+          echo consle log 111111
           pwd
           ls
           wget https://obs-community.obs.cn-north-1.myhuaweicloud.com/obsutil/current/obsutil_linux_amd64.tar.gz
