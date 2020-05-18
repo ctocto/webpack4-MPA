@@ -1,12 +1,12 @@
 # This is a basic workflow to help you get started with Actions
 
-name: Webhook trigger CI
+name: Webhook trigger Test
 
 # Controls when the action will run. Triggers the workflow on push or pull request
 # events but only for the master branch
 on:
   repository_dispatch:
-    types: public
+    types: webhook_test
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -33,7 +33,7 @@ jobs:
           npm run-script build
       
       # Upload a Build Artifact
-      - name: uploads artifacts
+      - name: Uploads artifacts
         uses: actions/upload-artifact@v2
         with:
           name: dist
@@ -42,3 +42,33 @@ jobs:
       - name: Display structure of dist files
         run: ls -R
         working-directory: dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - name: Download dist folder
+          uses: actions/download-artifact@v2
+          with:
+            name: dist
+
+      - name: Download util
+        run: |
+          wget https://obs-community.obs.cn-north-1.myhuaweicloud.com/obsutil/current/obsutil_linux_amd64.tar.gz
+          tar -xzvf obsutil_linux_amd64.tar.gz
+          cd obsutil_linux_amd64
+          chmod 755 obsutil
+          pwd
+          ls
+          ./obsutil ls -s
+
+      - name: Obsutil upload
+        if: ${{ success() }}
+        run: |
+          echo Test Over!
+
+        
+
+  

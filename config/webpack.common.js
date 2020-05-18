@@ -142,7 +142,7 @@ module.exports = {
       reporter: {
         allDone({ state }) {
           if (IsDev) {
-            console.log();
+            console.log('\n');
             console.log(getDevDoneLog())
           }
         }
