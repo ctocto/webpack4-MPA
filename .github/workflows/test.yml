@@ -57,8 +57,8 @@ jobs:
       - name: Download util
         run: |
           wget https://obs-community.obs.cn-north-1.myhuaweicloud.com/obsutil/current/obsutil_linux_amd64.tar.gz
-          tar -xzvf obsutil_linux_amd64.tar.gz -C obsutil_linux_amd64
-          ls
+          mkdir obsutil_linux_amd64
+          tar -xzvf obsutil_linux_amd64.tar.gz -C obsutil_linux_amd64 --strip-components 1
           cd obsutil_linux_amd64
           chmod 755 obsutil
           pwd
