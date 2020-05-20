@@ -7,33 +7,32 @@ const AddAssetHtmlPlugin = require('add-asset-html-webpack-plugin');
 const WebpackBuildNotifierPlugin = require('webpack-build-notifier');
 const FirendlyErrorePlugin = require('friendly-errors-webpack-plugin');
 const WebpackBar = require('webpackbar');
+const WebpackWatchedGlobEntries = require('./webpack-watched-glob-entries-plugin');
 // const HappyPack = require('happypack');
 // const HappyThreadPool = HappyPack.ThreadPool({ size: (IsProduction ? 10 : 4) });
 
 const IsProduction = process.env.NODE_ENV === 'production';
 const IsDev = process.env.NODE_ENV === 'development';
 const PostcssConfigPath = './config/postcss.config.js';
-const { getDevDoneLog, getEntrys, getHtmlPlugins, PROJECT_ROOT } = require('./utils');
+const { getDevDoneLog, getHtmlPlugins, PROJECT_ROOT } = require('./utils');
 const manifestPath = path.join(PROJECT_ROOT, 'src/manifest.json');
 const { commonVendors, alias, dll } = require('../.webpackrc');
 
-//入口
-let entrys = getEntrys('./src/pages/**/js/*.js');
 
 //html plugin
-let htmlPlugins = getHtmlPlugins(entrys);
+let htmlPlugins = getHtmlPlugins();
 
-if (commonVendors && commonVendors.length) {
-  entrys = {
-    common: commonVendors,
-    ...entrys
-  };
-}
 
 module.exports = {
   context: process.cwd(),
   target: 'web',
-  entry: entrys,
+  entry: WebpackWatchedGlobEntries.getEntries('./src/pages/**/js/*.js', {
+    ignore: '**/*.module.js'
+  }, {
+    extend: {
+      common: commonVendors,
+    }
+  }),
   stats: 'none',
   resolve: {
     alias
