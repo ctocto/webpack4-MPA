@@ -52,8 +52,6 @@
     "glob-base": "^0.3.0",
     "happypack": "^5.0.1",
     "html-loader": "^1.0.0",
-    "html-webpack-plugin": "^4.0.3",
-    "html-withimg-loader": "^0.1.16",
     "inquirer": "^7.1.0",
     "ip": "^1.1.5",
     "less": "^3.11.1",

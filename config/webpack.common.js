@@ -102,6 +102,7 @@ module.exports = {
         test: /\.(png|jpg|gif|svg)$/,
         loader: 'url-loader',
         options: {
+          limit: 8192,
           esModule: false, // https://stackoverflow.com/questions/59070216/webpack-file-loader-outputs-object-module
           name: 'asstes/[name].[ext]?[hash:8]'
         }
